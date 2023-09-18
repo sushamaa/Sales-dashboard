@@ -46,7 +46,7 @@ df = df[['Region', 'Branch', 'Routed_By','Mode','to_be_consider','Month','Volume
 
 ## ---SIDEBAR WIDGET---
 st.sidebar.header("Please Filter Here: ")
-
+## "Please note that altering the mode will result in modifications to the entire report."
 a1_export = sorted(df['Mode'].unique())
 export = st.sidebar.selectbox("Select Type of Export:", options = a1_export)
 
