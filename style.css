@@ -1,0 +1,20 @@
+/* Move block container higher */
+div.block-container.css-z5fcl4.ea3mdgi4 {
+    margin-top: -2em;
+  }
+  
+  /* Centering text in each box */   
+div.css-12w0qpk.e1f1d6gn1{  
+    background-color: #ffffff;
+    border: 5px solid #100707;
+    height: 160px;
+    padding: 1% 3% 1% 6%;
+    border-radius: 20px;}
+
+/* resizing the content of the box*/   
+ div.css-1xarl3l.e1i5pmia1{
+  font-size: 1.8em;
+  margin-top: 0.4em;
+  color: #100707;}
+
+
