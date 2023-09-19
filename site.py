@@ -168,6 +168,8 @@ else:
 
 st.markdown("---")  
 
+st.markdown('###### To see the complete table, simply click on the drop-down menu.')
+
 #-------------
 def table1(region_1,export_1):
   branch_of_that_region = sorted(df1.loc[(df1['REGION'] == region_1) & (df1['EXPORT'] == export_1) , 'BRANCH'].unique())
