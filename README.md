@@ -6,4 +6,4 @@ Feel free to explore the dashboard by adjusting the sliders and interacting with
 
 ![Screenshot 2024-04-17 1601211](https://github.com/sushamaa/streamlit/assets/89633663/8c63d466-c8bf-4128-83a7-9a87cbebbe82)
 
-## Disclaimer: The data presented in this document or any associated content is entirely fictional and for illustrative purposes only. Any resemblance to real individuals, organizations, or events is purely coincidental. This data should not be used for any real-world decisions, analysis, or actions, as it is entirely fabricated and does not reflect actual information or circumstances.
+#### Disclaimer: The data presented in this document or any associated content is entirely fictional and for illustrative purposes only. Any resemblance to real individuals, organizations, or events is purely coincidental. This data should not be used for any real-world decisions, analysis, or actions, as it is entirely fabricated and does not reflect actual information or circumstances.
