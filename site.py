@@ -235,7 +235,8 @@ cellsytle_jscode = JsCode(`
         }
 
         return cellStyle;
-    });
+    }
+    ');
 
 
     # Build the grid options for the data table
