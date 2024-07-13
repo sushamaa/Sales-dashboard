@@ -7,44 +7,48 @@ from st_aggrid import AgGrid
 from st_aggrid.shared import JsCode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 import warnings
+
+# Suppress future warnings for clean output
 warnings.filterwarnings("ignore", category=FutureWarning, module="pyarrow")
 
+# Configure the Streamlit app
 st.set_page_config(page_title="Performance Dashboard", page_icon=":bar_chart:", layout="wide")
 
+# Load custom CSS
 with open('style.css') as f:
   st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-# mainpage
+# Main page title and separator
 st.markdown("### :bar_chart: Performance Dashboard")
-
 st.markdown("---")
 
+# Function to get data from Excel file
 @st.cache_data
 def get_data_from_excel():
   df = pd.read_excel(io ='Book1.xlsx',sheet_name='performance', engine='openpyxl', usecols='A:H', nrows=20627)
   return df
 
+# Load data from Excel files
 df = get_data_from_excel()
 df1 = pd.read_excel(io = 'Book1.xlsx',sheet_name='target', engine = 'openpyxl', usecols='A:E', nrows=76)
 
-#exclude branch COP and VTZ
+# Exclude specific branches
 df = df[(df['Branch']!='COP') & (df['Branch']!='VTZ')]
 
-## create a new column 'Region' and assign branch to it's respective region 
+# Function to map branches to regions
 region_branch = {'North':['AMD','BRC','DEL','GDM','JAI'],'East':['KOL I','KOL II'],'West':['HYD','MUM','PNQ'],'South':['BLR','CJB','COK','MAA','TUT']}
 def regions(value):
     for j in region_branch:
       if value in region_branch[j]:
         return j
 
-#df['Region'] = df['Branch'].map(regions)  
+# Map branches to their regions 
 df.loc[:, 'Region'] = df['Branch'].map(regions)
 
-
-## reorder columns
+# Reorder columns
 df = df[['Region', 'Branch', 'Routed_By','Mode','to_be_consider','Month','Volume','Net_Profit','Recent_Month']]
 
-## ---SIDEBAR WIDGET---
+# Sidebar filter
 st.sidebar.header("Please Filter Here: ")
 ## "Please note that altering the mode will result in modifications to the entire report."
 a1_export = sorted(df['Mode'].unique())
@@ -59,9 +63,10 @@ route = st.sidebar.multiselect("Choose Route:", options = a3_route, default = a3
 a4_region = df['Region'].unique()
 region = st.sidebar.multiselect("Choose Region:", options = a4_region, default = a4_region[0:1])
 
+# Filter data based on sidebar selections
 df_selection = df.query("Mode == @export & Month == @month & Routed_By == @route & Region == @region")
 
-# assign unit value to volume
+# Function to assign unit value to volume based on export type
 def unit(export):
   if export[0:3]=='FCL':
     return "TEU's"
@@ -70,7 +75,7 @@ def unit(export):
   else:
     return "Tonnes"
 
-# ---SIDEBAR KPI's--- 
+# Sidebar KPI's
 total_revenue = round(df_selection.loc[df_selection['to_be_consider'] == 'Y', 'Net_Profit'].sum()/100000,2)
 total_volume = round(df_selection['Volume'].sum())
 average_revenue = round((total_revenue/len(month)),2)
@@ -86,6 +91,7 @@ st.sidebar.markdown(f"### Average Revenue: {average_revenue:,} lakhs")
 
 st.sidebar.markdown(f"### Average Volume: {average_volume:,} {unit(export)}")  
 
+# Functions to calculate targets
 def regional_revenue_target(region1, mode1):
   total = round(df1.loc[(df1['REGION'] == region1) & (df1['EXPORT'] == mode1) , 'REVENUE'].sum(),2)
   return total
@@ -102,13 +108,15 @@ def branch_volume_target(region1, mode1, branch1):
   total = round(df1.loc[(df1['REGION'] == region1) & (df1['EXPORT'] == mode1) & (df1['BRANCH'] == branch1) , 'VOLUME1'].sum())
   return total
 
+# Achieved vs Target selection
 st.markdown(f"### Achieved vs Target%")
 s1 = st.selectbox("Peformance of:", options = [(f"Last Month ({a2_month[-2]})"), (f"Current Month ({a2_month[-1]}) (1ST TO 10TH)")])
 
-## --TOP KPI's---  
-## for revenue
+# Top KPIs for revenue and volume
 regions = ['North','South','East','West']
 col1, col2, col3, col4 = st.columns(4)
+
+# Calculate and display revenue KPIs
 if s1 == (f"Last Month ({a2_month[-2]})"):
   for col, region in zip([col1, col2, col3, col4], regions):
     with col:
@@ -136,7 +144,7 @@ else:
         st.metric(label = f"{region} Revenue", value = (f"{rev} lakhs"))
       st.markdown(f"##### Target: {round(df1.loc[(df1['REGION'] == region) & (df1['EXPORT'] == export), 'REVENUE'].sum())} lakhs")
 
-## for volume
+# Calculate and display volume KPIs
 col11, col22, col33, col44 = st.columns(4)
 if s1 == (f"Last Month ({a2_month[-2]})"):
   for col, region in zip([col11, col22, col33, col44], regions):
