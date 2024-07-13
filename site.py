@@ -214,8 +214,8 @@ for i in ['North','South','East','West']:
   with st.expander(f"{i} Performance"):
     st.subheader(f"{i} Region:")
 
-# JavaScript code for cell styling in the grid
-cellsytle_jscode = JsCode(`
+# Define JavaScript code for cell styling in the grid
+cellsytle_jscode = JsCode("""
     function(params) {
         const cellStyle = {
             'color': 'white',
@@ -236,9 +236,7 @@ cellsytle_jscode = JsCode(`
 
         return cellStyle;
     }
-`);
-
-
+""")
 
     # Build the grid options for the data table
     gb = GridOptionsBuilder.from_dataframe(table1('North',export))
