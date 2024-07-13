@@ -173,12 +173,12 @@ else:
         st.metric(label = f"{region} Volume", value = (f"{vol} {unit(export)}"))
       st.markdown(f"##### Target: {round(df1.loc[(df1['REGION'] == region) & (df1['EXPORT'] == export), 'VOLUME1'].sum())} {unit(export)}")
 
-
+# Add a horizontal line separator
 st.markdown("---")  
 
 st.markdown('###### To see the complete table, simply click on the drop-down menu.')
 
-#-------------
+# Function to generate table for specific region and export mode
 def table1(region_1,export_1):
   branch_of_that_region = sorted(df1.loc[(df1['REGION'] == region_1) & (df1['EXPORT'] == export_1) , 'BRANCH'].unique())
   current_rev,current_vol,last_rev,last_vol,target_rev,target_vol = [],[],[],[],[],[]
@@ -204,15 +204,17 @@ def table1(region_1,export_1):
       ach_vol_current.append(0)
       ach_vol_last.append(0)
 
+   # Create a DataFrame with calculated values
   d = {'Branch':branch_of_that_region,'Target_revenue':target_rev,'Target_volume':target_vol,(f'Rev%({a2_month[-1]})'): ach_rev_current,(f'Vol%({a2_month[-1]})'):ach_vol_current,
   (f'Rev%({a2_month[-2]})'):ach_rev_last,(f'Vol%({a2_month[-2]})'):ach_vol_last,(f'Revenue({a2_month[-1]})'):current_rev,(f'Volume({a2_month[-1]})'):current_vol,(f'Revenue({a2_month[-2]})'):last_rev,(f'Volume({a2_month[-2]})'):last_vol,}
   return pd.DataFrame(data=d)
-#--------------------
 
+# Iterate over each region and create an expander for performance details
 for i in ['North','South','East','West']:
   with st.expander(f"{i} Performance"):
     st.subheader(f"{i} Region:")
 
+    # Define JavaScript code for cell styling in the grid
     cellsytle_jscode = JsCode(
             """
         function(params) {
@@ -236,30 +238,36 @@ for i in ['North','South','East','West']:
         """
         )
 
+    # Build the grid options for the data table
     gb = GridOptionsBuilder.from_dataframe(table1('North',export))
     gb.configure_columns(((f'Rev%({a2_month[-1]})'),(f'Vol%({a2_month[-1]})'),(f'Rev%({a2_month[-2]})'),(f'Vol%({a2_month[-2]})')),cellStyle=cellsytle_jscode,)
     gb.configure_pagination()
     gb.configure_columns(("Branch",'Target_revenue','Target_volume'), pinned=True)
     gridOptions = gb.build()
 
+    # Display the data table using AgGrid
     AgGrid(table1(i,export), gridOptions=gridOptions, allow_unsafe_jscode=True)
     st.markdown("** Revenue in lakhs")
 
 st.markdown("---")
 
+# Section for performance of Agent and Swift
 st.markdown('#### Performance of Agent and Swift:')
 col1,col2 = st.columns(2)
+
+# Dropdown to select the region
 with col1:
   the_region = st.selectbox("Select Region:", options = a4_region)
 
+# Dropdown to select the month
 with col2:
   the_month = st.selectbox("Select Month:", options = a2_month)
 
+# Filter data based on selected month and region
 new_df = df.query("Month == @the_month & Region == @the_region")  
-#new_df['Net_Profit'] = new_df['Net_Profit'].div(100000).round(2)
 new_df.loc[:, 'Net_Profit'] = new_df['Net_Profit'].div(100000).round(2)
 
-## create charts
+# Create charts for the selected data
 chart = functools.partial(st.plotly_chart, use_container_width=True)
 def graph1(the_month, export, the_region):
   col1a, col2a = st.columns(2)
@@ -287,6 +295,7 @@ def graph1(the_month, export, the_region):
       chart(fig)
       st.table(data.groupby(['Branch', 'Routed_By'])['Volume'].sum().reset_index())
 
+# Call the function to create graphs
 graph1(the_month, export, the_region)
 
 # Add a disclaimer
