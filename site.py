@@ -215,7 +215,7 @@ for i in ['North','South','East','West']:
     st.subheader(f"{i} Region:")
 
 # JavaScript code for cell styling in the grid
-cellsytle_jscode = JsCode(
+cellsytle_jscode = JsCode(`
     function(params) {
         const cellStyle = {
             'color': 'white',
@@ -236,7 +236,8 @@ cellsytle_jscode = JsCode(
 
         return cellStyle;
     }
-    );
+`);
+
 
 
     # Build the grid options for the data table
