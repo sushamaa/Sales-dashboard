@@ -14,8 +14,6 @@ div.css-12w0qpk.e1f1d6gn1 {
     align-items: center; /* Vertically center content */
     justify-content: center; /* Horizontally center content */
     box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
-    overflow: hidden; /* Prevent content overflow */
-    text-align: center; /* Center text inside the box */
 }
 
 /* Resizing the content of the box */
@@ -24,7 +22,6 @@ div.css-1xarl3l.e1i5pmia1 {
     margin-top: 0.4em; /* This can remain or use relative units */
     color: #100707;
     text-align: center; /* Center text inside the box */
-    overflow-wrap: break-word; /* Ensure long words break and stay within the block */
 }
 
 /* Media query for different screen sizes */
@@ -53,5 +50,4 @@ div.css-1xarl3l.e1i5pmia1 {
         margin-top: 0.2em; /* Adjust margin top for even smaller screens */
     }
 }
-
 
