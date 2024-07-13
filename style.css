@@ -24,6 +24,16 @@ div.css-1xarl3l.e1i5pmia1 {
     text-align: center; /* Center text inside the box */
 }
 
+/* Volume and Revenue Styling */
+.volume-revenue {
+    font-size: 1em; /* Use relative units for font size */
+    overflow-wrap: break-word; /* Ensure long words break and wrap */
+    word-wrap: break-word; /* Older browsers */
+    hyphens: auto; /* Hyphenate if necessary */
+    max-width: 100%; /* Ensure content stays within the box */
+    text-align: center; /* Center text inside the box */
+}
+
 /* Media query for different screen sizes */
 @media (max-width: 768px) {
     div.css-12w0qpk.e1f1d6gn1 {
@@ -48,6 +58,10 @@ div.css-1xarl3l.e1i5pmia1 {
     div.css-1xarl3l.e1i5pmia1 {
         font-size: 1.4em; /* Adjust font size for even smaller screens */
         margin-top: 0.2em; /* Adjust margin top for even smaller screens */
+    }
+
+    .volume-revenue {
+        font-size: 1.2em; /* Adjust font size for even smaller screens */
     }
 }
 
