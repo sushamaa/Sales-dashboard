@@ -215,28 +215,28 @@ for i in ['North','South','East','West']:
     st.subheader(f"{i} Region:")
 
 # Define JavaScript code for cell styling in the grid
-cellsytle_jscode = JsCode("""
-    function(params) {
-        const cellStyle = {
-            'color': 'white',
-            'display': 'flex',
-            'alignItems': 'center',
-            'justifyContent': 'center',
-            'padding': '0',
-            'margin': '0'
+    cellsytle_jscode = JsCode(
+            """
+        function(params) {
+            if (params.value > 99) {
+                return {
+                    'color': 'white',
+                    'backgroundColor': 'forestgreen'
+                }
+            } else if (params.value < 100) {
+                return {
+                    'color': 'white',
+                    'backgroundColor': 'crimson'
+                }
+            } else {
+                return {
+                    'color': 'white',
+                    'backgroundColor': 'slategray'
+                }
+            }
         };
-
-        if (params.value > 99) {
-            cellStyle.backgroundColor = 'forestgreen';
-        } else if (params.value < 100) {
-            cellStyle.backgroundColor = 'crimson';
-        } else {
-            cellStyle.backgroundColor = 'slategray';
-        }
-
-        return cellStyle;
-    }
-""")
+        """
+        )
 
     # Build the grid options for the data table
     gb = GridOptionsBuilder.from_dataframe(table1('North',export))
