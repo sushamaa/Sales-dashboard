@@ -1,20 +1,53 @@
 /* Move block container higher */
 div.block-container.css-z5fcl4.ea3mdgi4 {
-    margin-top: -2em;
-  }
-  
-  /* Centering text in each box */   
-div.css-12w0qpk.e1f1d6gn1{  
+    margin-top: -2em; /* This can remain as is or be adjusted based on testing */
+}
+
+/* Centering text in each box */
+div.css-12w0qpk.e1f1d6gn1 {  
     background-color: #ffffff;
     border: 5px solid #100707;
-    height: 160px;
-    padding: 1% 3% 1% 6%;
-    border-radius: 20px;}
+    height: 20vh; /* Changed to viewport height */
+    padding: 1% 3% 1% 6%; /* This remains flexible */
+    border-radius: 2vh; /* Changed to viewport height */
+    display: flex; /* Added for better centering */
+    align-items: center; /* Vertically center content */
+    justify-content: center; /* Horizontally center content */
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
 
-/* resizing the content of the box*/   
- div.css-1xarl3l.e1i5pmia1{
-  font-size: 1.8em;
-  margin-top: 0.4em;
-  color: #100707;}
+/* Resizing the content of the box */
+div.css-1xarl3l.e1i5pmia1 {
+    font-size: 1.8em; /* This can remain or use relative units */
+    margin-top: 0.4em; /* This can remain or use relative units */
+    color: #100707;
+    text-align: center; /* Center text inside the box */
+}
 
+/* Media query for different screen sizes */
+@media (max-width: 768px) {
+    div.css-12w0qpk.e1f1d6gn1 {
+        height: 25vh; /* Adjust height for smaller screens */
+        padding: 2% 5% 2% 7%; /* Adjust padding for smaller screens */
+        border-radius: 2vh; /* Adjust border radius for smaller screens */
+    }
+    
+    div.css-1xarl3l.e1i5pmia1 {
+        font-size: 1.6em; /* Adjust font size for smaller screens */
+        margin-top: 0.3em; /* Adjust margin top for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    div.css-12w0qpk.e1f1d6gn1 {
+        height: 30vh; /* Adjust height for even smaller screens */
+        padding: 3% 6% 3% 8%; /* Adjust padding for even smaller screens */
+        border-radius: 1.5vh; /* Adjust border radius for even smaller screens */
+    }
+    
+    div.css-1xarl3l.e1i5pmia1 {
+        font-size: 1.4em; /* Adjust font size for even smaller screens */
+        margin-top: 0.2em; /* Adjust margin top for even smaller screens */
+    }
+}
 
