@@ -1,8 +1,10 @@
-## [Streamlit App](https://performance-dashboard.streamlit.app/)
+## [Click here to view the live Sales Dashboard](https://performance-dashboard.streamlit.app/)
 
-This project, completed during my internship, is a sales dashboard created using Streamlit. On the left side, you'll find various interactive components, called 'sliders,' that allow us to filter and customize the data we're viewing. These sliders include options for selecting specific modes, periods, routes, or regions. Changing the mode will result in modifications to the entire report.
+This project, completed during my internship, is a sales dashboard created using Streamlit. You can **click the link above** to view the live dashboard.
 
-In the main section of the dashboard, we have visual representations of our sales data in the form of tables and graphs. These elements provide an overview of our sales performance, making it easy to identify trends and insights. The tables display detailed sales figures, while the graphs visually represent data points, helping us to intuitively grasp patterns.
+On the left side of the dashboard, you'll find various interactive components, called 'sliders,' that allow us to filter and customize the data we're viewing. These sliders include options for selecting specific modes, periods, routes, or regions. Changing the mode will result in modifications to the entire report.
+
+In the main section, we have visual representations of our sales data in the form of tables and graphs. These elements provide an overview of our sales performance, making it easy to identify trends and insights. The tables display detailed sales figures, while the graphs visually represent data points, helping us to intuitively grasp patterns.
 
 Feel free to explore the dashboard by adjusting the sliders and interacting with the different elements to gain a deeper understanding of sales performance.
 
