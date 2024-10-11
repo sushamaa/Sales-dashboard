@@ -251,8 +251,8 @@ for i in ['North','South','East','West']:
 
 st.markdown("---")
 
-# Section for performance of Agent and Swift
-st.markdown('#### Performance of Agent and Swift:')
+# Section for performance of Agent and Company
+st.markdown('#### Performance of Agent and Company:')
 col1,col2 = st.columns(2)
 
 # Dropdown to select the region
