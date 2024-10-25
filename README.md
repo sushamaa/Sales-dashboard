@@ -8,6 +8,6 @@ In the main section, we have visual representations of our sales data in the for
 
 Feel free to explore the dashboard by adjusting the sliders and interacting with the different elements to gain a deeper understanding of sales performance.
 
-![Screenshot 2024-04-17 1601211](https://github.com/sushamaa/streamlit/assets/89633663/8c63d466-c8bf-4128-83a7-9a87cbebbe82)
+![Screenshot 2024-10-25 082708](https://github.com/user-attachments/assets/9ebd581d-8ea6-43da-b8fc-b74ef2c958b2)
 
 #### Disclaimer: The data presented in this document or any associated content is entirely fictional and for illustrative purposes only. Any resemblance to real individuals, organizations, or events is purely coincidental. This data should not be used for any real-world decisions, analysis, or actions, as it is entirely fabricated and does not reflect actual information or circumstances.
