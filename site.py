@@ -64,7 +64,14 @@ a4_region = df['Region'].unique()
 region = st.sidebar.multiselect("Choose Region:", options = a4_region, default = a4_region[0:1])
 
 # Filter data based on sidebar selections
-df_selection = df.query("Mode == @export & Month == @month & Routed_By == @route & Region == @region")
+# df_selection = df.query("Mode == @export & Month == @month & Routed_By == @route & Region == @region")
+df_selection = df[
+    (df['Mode'] == export) &
+    (df['Month'].isin(month)) &
+    (df['Routed_By'].isin(route)) &
+    (df['Region'].isin(region))
+]
+
 
 # Function to assign unit value to volume based on export type
 def unit(export):
